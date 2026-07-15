@@ -1,0 +1,32 @@
+{
+  "assets": [
+    {
+      "id": "msci_eur",
+      "name": "Fidelity MSCI World Index Fund",
+      "sub": "P-Acc EUR (sin cobertura de divisa)",
+      "isin": "IE00BYX5NX33",
+      "ticker": "IE00BYX5NX33.SG",
+      "ok": true,
+      "points": 0
+    },
+    {
+      "id": "msci_eur_h",
+      "name": "Fidelity MSCI World Index Fund",
+      "sub": "P-Acc EUR (hedged / con cobertura)",
+      "isin": "IE00BYX5P602",
+      "ticker": "IE00BYX5P602.SG",
+      "ok": false,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "id": "world_gbp",
+      "name": "Fidelity Index World Fund",
+      "sub": "P-Acc GBP",
+      "isin": "GB00BJS8SJ34",
+      "ticker": "GB00BJS8SJ34.L",
+      "ok": true,
+      "points": 0
+    }
+  ],
+  "updated_at": "2026-07-15T18:52:07.474785Z"
+}
