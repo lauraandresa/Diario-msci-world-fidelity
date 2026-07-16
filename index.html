@@ -165,12 +165,12 @@
 </div>
 
 <div class="note">
-  <b>Cómo funciona:</b> estos son fondos de inversión, no ETFs — solo tienen <b>un valor liquidativo al día</b>, calculado tras el cierre. GitHub actualiza estos datos automáticamente 1-2 veces cada tarde (L-V) mediante una tarea programada; tu móvil solo lee ese archivo, nunca llama directamente a Yahoo. Fuente: Yahoo Finance.
+  <b>Cómo funciona:</b> estos son fondos de inversión, no ETFs — solo tienen <b>un valor liquidativo al día</b>, calculado tras el cierre. GitHub actualiza estos datos automáticamente 1-2 veces cada tarde (L-V) mediante una tarea programada.
 </div>
 
 <script>
 const ASSETS = [
-  { id:'msci_eur', name:'Fidelity MSCI World Index Fund', sub:'P-Acc EUR (sin cobertura)', isin:'IE00BYX5NX33' },
+  { id:'msci_eur', name:'Fidelity MSCI World Index Fund', sub:'P-Acc EUR, isin:'IE00BYX5NX33' },
 ];
 
 let currentAsset = ASSETS.find(a=>a.id===localStorage.getItem('ledger_asset')) || ASSETS[0];
