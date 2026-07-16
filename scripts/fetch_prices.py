@@ -96,7 +96,7 @@ def build_meta(tk, hist):
 def main():
     os.makedirs("data", exist_ok=True)
     index = []
-    now = datetime.datetime.now(datetime.UTC).isoformat().replace("+00:00", "Z")
+    now = datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z")
 
     for a in ASSETS:
         print(f"Buscando {a['id']} ({a['isin']})...")
