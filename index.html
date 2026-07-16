@@ -309,7 +309,7 @@ function drawChart(points, range, curr){
 function drawStreak(points, curr){
   const el = document.getElementById('streak');
   const tooltip = document.getElementById('streakTooltip');
-  const last = points.slice(-20);
+  const last = points.slice(-12);
   el.innerHTML = '';
   last.forEach((p,i)=>{
     const prev = i>0 ? last[i-1].v : p.v;
