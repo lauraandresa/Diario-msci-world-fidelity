@@ -22,21 +22,7 @@ ASSETS = [
         "name": "Fidelity MSCI World Index Fund",
         "sub": "P-Acc EUR (sin cobertura de divisa)",
         "isin": "IE00BYX5NX33",
-        "candidates": ["IE00BYX5NX33.SG", "0P0001CLDK.F", "IE00BYX5NX33.DE", "IE00BYX5NX33.F"],
-    },
-    {
-        "id": "msci_eur_h",
-        "name": "Fidelity MSCI World Index Fund",
-        "sub": "P-Acc EUR (hedged / con cobertura)",
-        "isin": "IE00BYX5P602",
-        "candidates": ["0P0001CJGV.F", "IE00BYX5P602.SG", "IE00BYX5P602.DE"],
-    },
-    {
-        "id": "world_gbp",
-        "name": "Fidelity Index World Fund",
-        "sub": "P-Acc GBP",
-        "isin": "GB00BJS8SJ34",
-        "candidates": ["GB00BJS8SJ34.L", "0P000125KV.L", "0P00013O91.L"],
+        "candidates": ["0P0001CLDK.F", "IE00BYX5NX33.SG"],
     },
 ]
 
