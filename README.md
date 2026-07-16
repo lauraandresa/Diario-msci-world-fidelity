@@ -5,29 +5,6 @@ Una PWA (app web instalable) que muestra el valor liquidativo diario de tu
 fondo indexado, sin backend propio: GitHub descarga el precio por ti una vez
 al día y tu móvil solo lee ese archivo.
 
-## Puesta en marcha (una sola vez)
-
-1. Crea un repo **público** en GitHub y sube TODO el contenido de esta
-   carpeta (incluida la carpeta oculta `.github/`, no la olvides).
-
-2. **Paso crítico que mucha gente se salta:** ve a
-   `Settings → Actions → General → Workflow permissions` en tu repo,
-   y marca **"Read and write permissions"**. Sin esto, la automatización
-   descarga los precios pero no puede guardarlos (falla el `git push`).
-
-3. Ve a la pestaña **Actions** de tu repo → click en "Actualizar precios"
-   (el workflow) → botón **"Run workflow"** → Run. Espera ~30 segundos:
-   esto genera los primeros datos (si no lo haces, la app se queda vacía
-   hasta la próxima ejecución programada, esa tarde).
-
-4. Ve a `Settings → Pages` → Branch `main`, carpeta `/ (root)` → Save.
-   En 1-2 minutos tendrás tu URL: `https://tuusuario.github.io/turepo/`.
-
-5. Ábrela en el móvil → "Añadir a pantalla de inicio" (iOS) o
-   "Instalar app" (Android).
-
-A partir de aquí, GitHub actualiza los precios solo, de lunes a viernes,
-a las 18:00 y 20:00 UTC. Nunca tienes que tocar nada más.
 
 ## Añadir otro fondo o índice en el futuro
 
