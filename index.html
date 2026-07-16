@@ -66,9 +66,14 @@
 
   /* ---- streak strip: firma visual del diseño ---- */
   .streak{ display:flex; gap:3px; align-items:flex-end; height:26px; margin:18px 18px 0; }
-  .streak i{ flex:1; border-radius:1px; opacity:.9; }
+  .streak i{ flex:1; border-radius:1px; opacity:.9; cursor:pointer; }
   .streak i.up{ background:var(--green); }
   .streak i.down{ background:var(--red); }
+  .streak i:hover, .streak i:active{ opacity:1; outline:1px solid var(--text); }
+  .streak-tooltip{
+    display:none; margin:6px 18px 0; padding:6px 10px; background:var(--bg-elev-2);
+    border:1px solid var(--line); border-radius:6px; font-size:11.5px; width:fit-content;
+  }
   .streak-label{ display:flex; justify-content:space-between; margin:6px 18px 0; font-size:10px; color:var(--faint); letter-spacing:.06em; }
 
   /* ---- tabs ---- */
@@ -132,7 +137,8 @@
 </header>
 
 <div class="streak" id="streak"></div>
-<div class="streak-label"><span id="streakFrom"></span><span>últimas sesiones</span><span id="streakTo">hoy</span></div>
+<div class="streak-tooltip" id="streakTooltip"></div>
+<div class="streak-label"><span id="streakFrom"></span><span>últimos días</span><span id="streakTo">hoy</span></div>
 
 <div class="tabs" id="tabs">
   <div class="tab" data-range="5d">5D</div>
@@ -155,7 +161,6 @@
   <div class="stat"><b>Cierre anterior</b><span id="sPrev">-</span></div>
   <div class="stat"><b>Máximo periodo</b><span id="sHigh">-</span></div>
   <div class="stat"><b>Mínimo periodo</b><span id="sLow">-</span></div>
-  <div class="stat"><b>Rango 52 semanas</b><span id="s52">-</span></div>
   <div class="stat"><b>Divisa</b><span id="sCur">-</span></div>
 </div>
 
@@ -303,17 +308,31 @@ function drawChart(points, range, curr){
 
 function drawStreak(points, curr){
   const el = document.getElementById('streak');
+  const tooltip = document.getElementById('streakTooltip');
   const last = points.slice(-20);
   el.innerHTML = '';
   last.forEach((p,i)=>{
     const prev = i>0 ? last[i-1].v : p.v;
-    const up = p.v >= prev;
-    const h = 8 + Math.round(Math.random()*0) + Math.min(18, Math.abs(p.v-prev)/prev*4000);
+    const pct = prev ? ((p.v - prev)/prev)*100 : 0;
+    const up = pct >= 0;
+    const h = Math.max(6, Math.min(26, 8 + Math.min(18, Math.abs(pct)*8)));
     const bar = document.createElement('i');
     bar.className = up ? 'up' : 'down';
-    bar.style.height = Math.max(6, Math.min(26, h)) + 'px';
+    bar.style.height = h + 'px';
+
+    const show = ()=>{
+      tooltip.style.display = 'block';
+      tooltip.innerHTML =
+        `<span class="mono" style="color:${up?'var(--green)':'var(--red)'}"><b>${up?'+':''}${fmtNumber(pct)}%</b></span>` +
+        ` &nbsp;<span class="mono">${fmtNumber(p.v/curr.divisor)} ${curr.symbol}</span>` +
+        ` <span style="color:var(--faint)">· ${fmtDate(p.t, '1mo')}</span>`;
+    };
+    bar.addEventListener('mouseenter', show);
+    bar.addEventListener('touchstart', (e)=>{ e.preventDefault(); show(); }, {passive:false});
     el.appendChild(bar);
   });
+  el.addEventListener('mouseleave', ()=>{ tooltip.style.display='none'; });
+
   if(last.length){
     document.getElementById('streakFrom').textContent = fmtDate(last[0].t, '1mo');
   }
@@ -327,9 +346,6 @@ function renderStats(points, meta, curr){
   document.getElementById('sPrev').textContent = meta.previousClose ? fmtNumber(meta.previousClose/curr.divisor)+' '+curr.symbol : '-';
   document.getElementById('sHigh').textContent = fmtNumber(high/curr.divisor)+' '+curr.symbol;
   document.getElementById('sLow').textContent = fmtNumber(low/curr.divisor)+' '+curr.symbol;
-  if(meta.fiftyTwoWeekLow && meta.fiftyTwoWeekHigh){
-    document.getElementById('s52').textContent = `${fmtNumber(meta.fiftyTwoWeekLow/curr.divisor)} – ${fmtNumber(meta.fiftyTwoWeekHigh/curr.divisor)} ${curr.symbol}`;
-  }
   document.getElementById('sCur').textContent = curr.label;
 }
 
