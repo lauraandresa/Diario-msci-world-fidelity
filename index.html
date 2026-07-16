@@ -117,7 +117,7 @@
   <div class="mark"><span class="dot"></span> Ledger · seguimiento diario</div>
 </div>
 
-<select id="assetSelect"></select>
+<select id="assetSelect" style="display:none"></select>
 
 <header>
   <div class="isin mono" id="assetIsin">-</div>
@@ -170,9 +170,7 @@
 
 <script>
 const ASSETS = [
-  { id:'msci_eur',   name:'Fidelity MSCI World Index Fund', sub:'P-Acc EUR (sin cobertura)', isin:'IE00BYX5NX33' },
-  { id:'msci_eur_h', name:'Fidelity MSCI World Index Fund', sub:'P-Acc EUR (hedged)',         isin:'IE00BYX5P602' },
-  { id:'world_gbp',  name:'Fidelity Index World Fund',       sub:'P-Acc GBP',                 isin:'GB00BJS8SJ34' },
+  { id:'msci_eur', name:'Fidelity MSCI World Index Fund', sub:'P-Acc EUR (sin cobertura)', isin:'IE00BYX5NX33' },
 ];
 
 let currentAsset = ASSETS.find(a=>a.id===localStorage.getItem('ledger_asset')) || ASSETS[0];
