@@ -5,7 +5,7 @@ on:
     # 18:00 y 20:00 UTC, de lunes a viernes (tras el cierre de mercado y
     # la publicación habitual del valor liquidativo). Dos pasadas por si
     # el fondo lo publica tarde.
-    - cron: '0 18 * * 1-5'
+    - cron: '0 16 * * 1-5'
     - cron: '0 20 * * 1-5'
   workflow_dispatch: {}   # permite lanzarlo a mano desde la pestaña "Actions"
 
