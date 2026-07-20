@@ -2,11 +2,16 @@ name: Actualizar precios
 
 on:
   schedule:
-    # 18:00 y 20:00 UTC, de lunes a viernes (tras el cierre de mercado y
-    # la publicación habitual del valor liquidativo). Dos pasadas por si
-    # el fondo lo publica tarde.
-    - cron: '0 16 * * 1-5'
-    - cron: '0 20 * * 1-5'
+    # Varios intentos repartidos por la tarde/noche (hora UTC), evitando
+    # la hora en punto. GitHub NO garantiza que un cron se ejecute --
+    # documentan que en días de carga alta puede saltarse la ejecución
+    # entera sin avisar. Con 2 intentos, que fallen los dos el mismo día
+    # es más probable de lo que parece; con 4 repartidos, es mucho más
+    # raro que fallen todos a la vez.
+    - cron: '7 17 * * 1-5'
+    - cron: '12 18 * * 1-5'
+    - cron: '23 19 * * 1-5'
+    - cron: '41 21 * * 1-5'
   workflow_dispatch: {}   # permite lanzarlo a mano desde la pestaña "Actions"
 
 permissions:
