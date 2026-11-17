@@ -7,7 +7,7 @@
       "isin": "IE00BYX5NX33",
       "ticker": "0P0001CLDK.F",
       "ok": true,
-      "points": 2196
+      "points": 2197
     },
     {
       "id": "msci_eur_h",
@@ -26,5 +26,5 @@
       "error": "sin datos en ning\u00fan ticker candidato"
     }
   ],
-  "updated_at": "2026-11-17T04:10:23.082358Z"
+  "updated_at": "2026-11-17T23:49:46.777178Z"
 }
